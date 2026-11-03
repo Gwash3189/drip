@@ -1,4 +1,4 @@
-# drip
+# @gwash3189/drip
 
 A lightweight, fluent TypeScript library for keyed rate limiting and throttling using a sliding window / token bucket algorithm. Zero runtime dependencies.
 
@@ -13,7 +13,7 @@ A lightweight, fluent TypeScript library for keyed rate limiting and throttling 
 ## Installation
 
 ```bash
-npm install drip
+npm install @gwash3189/drip
 ```
 
 ## Usage
@@ -21,7 +21,7 @@ npm install drip
 ### Fluent Builder API
 
 ```ts
-import Drip from 'drip'
+import Drip from '@gwash3189/drip'
 
 const result = await Drip.key(`api:${orgId}`)
   .allow(100)
@@ -41,7 +41,7 @@ const result = await Drip.key(`api:${orgId}`)
 ### Direct Function API
 
 ```ts
-import { drip } from 'drip'
+import { drip } from '@gwash3189/drip'
 
 const result = await drip(
   `api:${orgId}`,
@@ -55,7 +55,7 @@ const result = await drip(
 ### Consuming Tokens Without a Callback
 
 ```ts
-import Drip, { consume } from 'drip'
+import Drip, { consume } from '@gwash3189/drip'
 
 // Via builder
 const status = await Drip.key('user:123').allow(10).per('1m').consume(1)
@@ -71,7 +71,7 @@ console.log(nextStatus.remaining) // 7
 When a rate limit is exceeded and cannot be satisfied within the `wait` window, `DripRateLimitError` is thrown:
 
 ```ts
-import Drip, { DripRateLimitError } from 'drip'
+import Drip, { DripRateLimitError } from '@gwash3189/drip'
 
 try {
   await Drip.key('export:job').allow(1).per('10s').work(() => runExport())
@@ -85,7 +85,7 @@ try {
 ### Resetting State
 
 ```ts
-import Drip, { resetDrip } from 'drip'
+import Drip, { resetDrip } from '@gwash3189/drip'
 
 // Reset a specific key
 resetDrip('api:org-1')
